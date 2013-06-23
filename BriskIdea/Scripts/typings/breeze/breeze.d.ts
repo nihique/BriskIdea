@@ -56,6 +56,9 @@ declare module breezeCore {
 
 declare module breeze {
 
+    // martin change
+    var config: any;
+
     interface Entity {
         entityAspect: EntityAspect;
         entityType: EntityType;
@@ -210,7 +213,7 @@ declare module breeze {
         parseDateFromServer(date: any): Date;
 
     }
-    declare var DataType: DataType; 
+    var DataType: DataType; 
 
     class EntityActionSymbol extends breezeCore.EnumSymbol {
     }

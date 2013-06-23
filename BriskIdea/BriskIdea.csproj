@@ -175,10 +175,19 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="App\viewmodels\next.ts" />
+    <TypeScriptCompile Include="App\core\dataContext.ts" />
+    <Content Include="App\core\dataContext.js">
+      <DependentUpon>dataContext.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="App\core\logger.ts" />
+    <Content Include="App\core\logger.js">
+      <DependentUpon>logger.ts</DependentUpon>
+    </Content>
     <Content Include="App\viewmodels\next.js">
       <DependentUpon>next.ts</DependentUpon>
     </Content>
     <Content Include="App\views\next.html" />
+    <Content Include="App\_legacy\datacontext.js" />
     <Content Include="Content\breezesample.css" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <Content Include="Scripts\knockout-2.1.0.js" />
@@ -267,6 +276,12 @@
     <Content Include="App\viewmodels\next.js.map">
       <DependentUpon>next.ts</DependentUpon>
     </Content>
+    <Content Include="App\core\dataContext.js.map">
+      <DependentUpon>dataContext.ts</DependentUpon>
+    </Content>
+    <Content Include="App\core\logger.js.map">
+      <DependentUpon>logger.ts</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-2.0.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -285,7 +300,9 @@
     <Content Include="Scripts\typings\jquery\jquery.d.ts" />
     <Content Include="Scripts\typings\knockout\knockout.amd.d.ts" />
     <Content Include="Scripts\typings\knockout\knockout.d.ts" />
+    <Content Include="Scripts\typings\q\Q.d.ts" />
     <Content Include="Scripts\typings\requirejs\require.d.ts" />
+    <Content Include="Scripts\typings\toastr\toastr.d.ts" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
