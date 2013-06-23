@@ -9,12 +9,12 @@ namespace BriskIdea.Models
         {
             var todos = new []
                 {
-                    new Todo{Title = "Wake up"},
-                    new Todo{Title = "Do dishes", IsDone = true},
-                    new Todo{Title = "Mow lawn", IsDone = true},
-                    new Todo{Title = "Try Breeze"},
-                    new Todo{Title = "Tell the world"},
-                    new Todo{Title = "Go home early"},
+                    new Todo
+                    {
+                        Title = "Discover Meteor",
+                        Description = "http://www.discovermeteor.com/",
+                        IsDone = false,
+                    },
                 };
 
             Array.ForEach(todos, t => context.Todos.Add(t));

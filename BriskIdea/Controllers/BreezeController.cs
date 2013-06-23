@@ -1,12 +1,11 @@
 using System.Linq;
 using System.Web.Http;
 using Newtonsoft.Json.Linq;
-
 using Breeze.WebApi;
-
 using BriskIdea.Models;
+
 namespace BriskIdea.Controllers {
-  
+
     [BreezeController]
     public class BreezeController : ApiController {
 
