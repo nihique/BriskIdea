@@ -9,7 +9,7 @@ define(["require", "exports", 'durandal/app', 'durandal/system', 'durandal/plugi
             this.router = router;
         }
         Shell.prototype.activate = function () {
-            return router.activate('welcome');
+            return router.activate('inbox');
         };
 
         Shell.prototype.search = function () {

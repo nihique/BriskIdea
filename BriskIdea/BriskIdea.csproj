@@ -170,44 +170,24 @@
     <Content Include="App\durandal\viewModelBinder.js" />
     <Content Include="App\durandal\widget.js" />
     <Content Include="App\main-built.js" />
-    <TypeScriptCompile Include="App\viewmodels\tsinstance.ts" />
-    <TypeScriptCompile Include="App\model\person.ts" />
     <TypeScriptCompile Include="App\main.ts" />
     <Content Include="App\main.js">
       <DependentUpon>main.ts</DependentUpon>
-    </Content>
-    <Content Include="App\model\person.js">
-      <DependentUpon>person.ts</DependentUpon>
     </Content>
     <TypeScriptCompile Include="App\reference.ts" />
     <Content Include="App\reference.js">
       <DependentUpon>reference.ts</DependentUpon>
     </Content>
-    <TypeScriptCompile Include="App\viewmodels\tsctor.ts" />
     <TypeScriptCompile Include="App\viewmodels\shell.ts" />
-    <TypeScriptCompile Include="App\viewmodels\flickr.ts" />
-    <Content Include="App\viewmodels\flickr.js">
-      <DependentUpon>flickr.ts</DependentUpon>
+    <TypeScriptCompile Include="App\viewmodels\inbox.ts" />
+    <Content Include="App\viewmodels\inbox.js">
+      <DependentUpon>inbox.ts</DependentUpon>
     </Content>
     <Content Include="App\viewmodels\shell.js">
       <DependentUpon>shell.ts</DependentUpon>
     </Content>
-    <Content Include="App\viewmodels\tsctor.js">
-      <DependentUpon>tsctor.ts</DependentUpon>
-    </Content>
-    <Content Include="App\viewmodels\tsinstance.js">
-      <DependentUpon>tsinstance.ts</DependentUpon>
-    </Content>
-    <TypeScriptCompile Include="App\viewmodels\welcome.ts" />
-    <Content Include="App\viewmodels\welcome.js">
-      <DependentUpon>welcome.ts</DependentUpon>
-    </Content>
-    <Content Include="App\views\tsinstance.html" />
-    <Content Include="App\views\tsctor.html" />
-    <Content Include="App\views\detail.html" />
-    <Content Include="App\views\flickr.html" />
+    <Content Include="App\views\inbox.html" />
     <Content Include="App\views\shell.html" />
-    <Content Include="App\views\welcome.html" />
     <Content Include="Content\app.css" />
     <Content Include="Content\bootstrap-responsive.css" />
     <Content Include="Content\bootstrap-responsive.min.css" />
@@ -230,15 +210,6 @@
     <Content Include="Content\font\fontawesome-webfont.ttf" />
     <Content Include="Content\font\fontawesome-webfont.eot" />
     <Content Include="Content\font\FontAwesome.otf" />
-    <Content Include="App\viewmodels\tsctor.js.map">
-      <DependentUpon>tsctor.ts</DependentUpon>
-    </Content>
-    <Content Include="App\viewmodels\tsinstance.js.map">
-      <DependentUpon>tsinstance.ts</DependentUpon>
-    </Content>
-    <Content Include="App\model\person.js.map">
-      <DependentUpon>person.ts</DependentUpon>
-    </Content>
     <Content Include="App\main.js.map">
       <DependentUpon>main.ts</DependentUpon>
     </Content>
@@ -248,14 +219,11 @@
     <Content Include="App\reference.js.map">
       <DependentUpon>reference.ts</DependentUpon>
     </Content>
-    <Content Include="App\viewmodels\welcome.js.map">
-      <DependentUpon>welcome.ts</DependentUpon>
-    </Content>
     <Content Include="App\viewmodels\shell.js.map">
       <DependentUpon>shell.ts</DependentUpon>
     </Content>
-    <Content Include="App\viewmodels\flickr.js.map">
-      <DependentUpon>flickr.ts</DependentUpon>
+    <Content Include="App\viewmodels\inbox.js.map">
+      <DependentUpon>inbox.ts</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-2.0.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -282,6 +250,8 @@
     <Content Include="Scripts\jquery-2.0.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App\models\" />
+    <Folder Include="App\services\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
@@ -292,9 +262,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Durandal\_splash.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="readme.md" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -12,7 +12,7 @@ export class Shell {
     }
 
     activate() {
-        return router.activate('welcome');
+        return router.activate('inbox');
     }
 
     search() {

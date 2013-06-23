@@ -22,10 +22,13 @@ export class Bootstrapper implements IBootstrapper {
 
             //configure routing
             router.useConvention();
-            router.mapNav('welcome');
-            router.mapNav('flickr');
-            router.mapNav('tsctor');
-            router.mapNav('tsinstance');
+            router.mapNav('inbox');
+            router.mapNav('next');
+            router.mapNav('later');
+            router.mapNav('waiting');
+            router.mapNav('scheduled');
+            router.mapNav('someday');
+            router.mapNav('focus');
 
             app.adaptToDevice();
 
