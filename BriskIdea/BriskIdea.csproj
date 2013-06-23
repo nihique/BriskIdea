@@ -158,34 +158,27 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\BreezeClientSampleRouteConfig.cs" />
     <Compile Include="App_Start\BreezeWebApiConfig.cs" />
-    <Compile Include="App_Start\DurandalBundleConfig.cs" />
-    <Compile Include="App_Start\DurandalConfig.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\BreezeSampleController.cs" />
-    <Compile Include="Controllers\BreezeSampleShellController.cs" />
+    <Compile Include="Controllers\BreezeController.cs" />
     <Compile Include="Controllers\DurandalController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\BreezeSampleContext.cs" />
-    <Compile Include="Models\BreezeSampleDatabaseInitializer.cs" />
-    <Compile Include="Models\BreezeSampleTodoItem.cs" />
+    <Compile Include="Models\BriskIdeaDbContext.cs" />
+    <Compile Include="Models\DbInitializer.cs" />
     <Compile Include="Models\Todo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\breezesample.css" />
-    <Content Include="Scripts\app\logger.js" />
-    <Content Include="Scripts\app\sampleViewModel.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <Content Include="Scripts\knockout-2.1.0.js" />
     <Content Include="Scripts\typings\breeze\breeze-1.0.d.ts" />
     <Content Include="Scripts\typings\breeze\breeze.d.ts" />
-    <Content Include="Views\BreezeSampleShell\index.cshtml" />
     <TypeScriptCompile Include="App\bootstrapper.ts" />
     <Content Include="App\bootstrapper.js">
       <DependentUpon>bootstrapper.ts</DependentUpon>
