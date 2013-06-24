@@ -204,9 +204,6 @@
     </Content>
     <Content Include="App\views\next.html" />
     <Content Include="App\_legacy\datacontext.js" />
-    <Content Include="Content\breezesample.css" />
-    <Content Include="Scripts\jquery-1.7.1.min.js" />
-    <Content Include="Scripts\knockout-2.1.0.js" />
     <Content Include="Scripts\typings\breeze\breeze-1.0.d.ts" />
     <Content Include="Scripts\typings\breeze\breeze.d.ts" />
     <TypeScriptCompile Include="App\bootstrapper.ts" />
