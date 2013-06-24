@@ -16,7 +16,7 @@ define(["require", "exports", 'core/dataContext'], function(require, exports, __
         }
         BriskIdeaDataContext.prototype.init = function () {
             var _this = this;
-            _super.prototype.init.call(this, function () {
+            return _super.prototype.init.call(this, function () {
                 return _this.getTodos(_this.todos);
             });
         };

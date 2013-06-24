@@ -40,7 +40,7 @@ export class DataContext {
 
     //#region public
 
-    public init(afterBreezeConfigCallback: () => void = () => { }) {
+    public init(afterBreezeConfigCallback: () => any = () => { }) {
         return Q
             .fcall(() => logger.instance.log('datacontext.init() started'))
             .then(() => this._configureBreeze())
