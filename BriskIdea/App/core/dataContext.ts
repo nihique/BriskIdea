@@ -54,6 +54,10 @@ export class DataContext {
             .then(() => logger.instance.log('datacontext.init() finished'));
     }
 
+    public createEntity(typeName: string, config?: any, state?: breeze.EntityStateSymbol) {
+        return this.entityManager.createEntity(typeName, config, state);
+    }
+
     public get(query: breeze.EntityQuery, observable, first: boolean = false) {
         this.isQuering(true);
         return query

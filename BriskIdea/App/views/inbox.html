@@ -1,6 +1,11 @@
 ﻿<section>
     <h2>Inbox</h2>
-    <p>This is Inbox section.</p>
+
+    <form>
+        Quick add: <input data-bind="value: rapidEntryText"/>
+        <input type="submit" class="btn" value="Add" data-bind="click: rapidEntry" />
+    </form>
+
     <ul data-bind="foreach: todos">
         <li data-bind="text: title"></li>
     </ul>

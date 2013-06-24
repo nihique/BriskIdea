@@ -39,6 +39,10 @@ define(["require", "exports", 'durandal/system', 'core/logger'], function(requir
             });
         };
 
+        DataContext.prototype.createEntity = function (typeName, config, state) {
+            return this.entityManager.createEntity(typeName, config, state);
+        };
+
         DataContext.prototype.get = function (query, observable, first) {
             if (typeof first === "undefined") { first = false; }
             var _this = this;

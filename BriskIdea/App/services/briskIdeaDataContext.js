@@ -17,6 +17,12 @@ define(["require", "exports", 'core/dataContext'], function(require, exports, __
             var query = this.breeze.EntityQuery.from('todos');
             return this.get(query, observable);
         };
+
+        BriskIdeaDataContext.prototype.createTodo = function (config, state) {
+            if (!config.hasOwnProperty('createdOn'))
+                config.createdOn = new Date();
+            return this.createEntity('Todo', config, state);
+        };
         return BriskIdeaDataContext;
     })(dc.DataContext);
     exports.BriskIdeaDataContext = BriskIdeaDataContext;
