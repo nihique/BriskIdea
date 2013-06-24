@@ -183,7 +183,7 @@ declare module Breeze {
         parseDateFromServer(date: any): Date;
 
     }
-    var DataType: DataType; 
+    declare var DataType: DataType; 
 
     class EntityActionSymbol extends BreezeCore.EnumSymbol {
     }
