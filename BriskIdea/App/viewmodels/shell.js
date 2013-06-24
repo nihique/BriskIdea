@@ -1,4 +1,5 @@
 define(["require", "exports", 'durandal/app', 'durandal/system', 'durandal/plugins/router'], function(require, exports, __app__, __system__, __router__) {
+    /// <reference path="../reference.ts" />
     var app = __app__;
     var system = __system__;
     var router = __router__;
