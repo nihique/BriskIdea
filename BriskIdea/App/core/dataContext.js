@@ -1,13 +1,11 @@
 define(["require", "exports", 'core/logger'], function(require, exports, __logger__) {
     var logger = __logger__;
+    var breeze = Breeze;
 
     var DataContext = (function () {
-        function DataContext(options) {
+        function DataContext() {
             var _this = this;
             this.breeze = breeze;
-            this.url = options.url;
-            this.db = options.db;
-            this.login = options.login;
             this.hasChanges = ko.observable(false);
             this.isSaving = ko.observable(false);
             this.isDeleting = ko.observable(false);
@@ -33,38 +31,37 @@ define(["require", "exports", 'core/logger'], function(require, exports, __logge
             var _this = this;
             return Q.fcall(function () {
                 breeze.NamingConvention.camelCase.setAsDefault();
-                _this.configureAjaxAdapter();
-                _this.configureManager();
-                _this.configureEntityQuery();
+                _this.entityQuery = breeze.EntityQuery;
+                _this.predicate = breeze.Predicate;
+                configureAjaxAdapter();
+                configureManager();
+                configureEntityQuery(entityQuery);
             }).then(function () {
-                return _this.metadataStore.fetchMetadata(_this.url);
+                return _this.metadataStore.fetchMetadata(config.url.breezeApi);
             });
         };
 
         DataContext.prototype.configureEntityQuery = function () {
-            var _this = this;
-            var fromOrig = breeze.EntityQuery.from;
-            breeze.EntityQuery.from = function (entities) {
-                return fromOrig(entities).withParameters({ db: _this.db, login: _this.login });
+            var fromOrig = this.entityQuery.from;
+            this.entityQuery.from = function (entities) {
+                return fromOrig(entities).withParameters({ db: config.db, login: config.login });
             };
         };
 
         DataContext.prototype.configureManager = function () {
-            var _this = this;
-            this.entityManager = new breeze.EntityManager(this.url);
-            this.metadataStore = this.entityManager.metadataStore;
-            this.entityManager.hasChangesChanged.subscribe(function (eventArgs) {
-                _this.hasChanges(eventArgs.hasChanges);
+            this.manager = new breeze.EntityManager(config.url.breezeApi);
+            this.metadataStore = manager.metadataStore;
+            this.manager.hasChangesChanged.subscribe(function (eventArgs) {
+                self.hasChanges(eventArgs.hasChanges);
             });
         };
 
         DataContext.prototype.configureAjaxAdapter = function () {
-            var _this = this;
             var ajaxAdapter = breeze.config.getAdapterInstance("ajax");
             ajaxAdapter.defaultSettings = {
                 beforeSend: function (xhr) {
-                    xhr.setRequestHeader("db", _this.db);
-                    xhr.setRequestHeader("login", _this.login);
+                    xhr.setRequestHeader("db", config.db);
+                    xhr.setRequestHeader("login", config.login);
                 }
             };
         };

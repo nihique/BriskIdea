@@ -1,4 +1,6 @@
 /// <reference path="../reference.ts" />
+
+import system = require('durandal/system');
 import logger = require('core/logger');
 
 export class DataContext {
@@ -36,12 +38,14 @@ export class DataContext {
         });
     }
 
+    //#region public
+
     public init(afterBreezeConfigCallback) {
         return Q
             .fcall(() => {
                 logger.instance.log('datacontext.init() started');
             })
-            .then(this.configureBreeze)
+            .then(this._configureBreeze)
             .then(afterBreezeConfigCallback)
             .then(() => {
                 return Q.all([
@@ -54,18 +58,51 @@ export class DataContext {
             });
     }
 
-    private configureBreeze() {
+    public get(query, observable, first) {
+        this.isQuering(true);
+        return query
+            .using(this.entityManager)
+            .execute()
+            .then((data) => this.succeeded(data, observable, first))
+            .fail(this.failed)
+            .fin(() => this.isQuering(false));
+    }
+
+    //#endregion
+
+
+    //#region protected
+
+    public succeeded(data, observable, first) {
+        first = first || false;
+        var result = first ? data.results[0] : data.results;
+        if (observable) observable(result);
+        var msg = 'Data retrieved successfuly.';
+        logger.instance.log(msg, data, system.getModuleId(self), false);
+    }
+
+    public failed(error) {
+        utils.failed('Error retrieving data:', error);
+    }
+
+
+    //#endregion
+
+
+    //#region private
+
+    private _configureBreeze() {
         return Q
             .fcall(() => {
                 breeze.NamingConvention.camelCase.setAsDefault();
-                this.configureAjaxAdapter();
-                this.configureManager();
-                this.configureEntityQuery();
+                this._configureAjaxAdapter();
+                this._configureManager();
+                this._configureEntityQuery();
             })
             .then(() => { return this.metadataStore.fetchMetadata(this.url); });
     }
 
-    private configureEntityQuery() {
+    private _configureEntityQuery() {
         var fromOrig = breeze.EntityQuery.from;
         breeze.EntityQuery.from =  (entities) => {
             return fromOrig(entities)
@@ -73,7 +110,7 @@ export class DataContext {
         };
     }
 
-    private configureManager() {
+    private _configureManager() {
         this.entityManager = new breeze.EntityManager(this.url);
         this.metadataStore = this.entityManager.metadataStore;
         this.entityManager.hasChangesChanged.subscribe((eventArgs) => {
@@ -81,7 +118,7 @@ export class DataContext {
         });
     }
 
-    private configureAjaxAdapter() {
+    private _configureAjaxAdapter() {
         var ajaxAdapter = breeze.config.getAdapterInstance("ajax");
         ajaxAdapter.defaultSettings = {
             beforeSend: (xhr) => {
@@ -90,4 +127,6 @@ export class DataContext {
             }
         };
     }
+
+    //#endregion
 }
