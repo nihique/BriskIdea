@@ -1,6 +1,5 @@
 /// <reference path="../reference.ts" />
 
-import logger = require('core/logger');
 import vm = require('core/viewModel');
 import dc = require('services/briskIdeaDataContext');
 

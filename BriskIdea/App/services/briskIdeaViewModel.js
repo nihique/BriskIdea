@@ -5,7 +5,7 @@ var __extends = this.__extends || function (d, b) {
     d.prototype = new __();
 };
 define(["require", "exports", 'core/viewModel', 'services/briskIdeaDataContext'], function(require, exports, __vm__, __dc__) {
-    
+    /// <reference path="../reference.ts" />
     var vm = __vm__;
     var dc = __dc__;
 

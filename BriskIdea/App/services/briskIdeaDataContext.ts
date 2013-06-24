@@ -12,7 +12,10 @@ export class BriskIdeaDataContext extends dc.DataContext {
     }
 
     public init() {
-        return super.init(() => this.getTodos(this.todos));
+        return super.init(() => {
+            // preload and cache all app data 
+            this.getTodos(this.todos);
+        });
     }
 
     public getTodos(observable: KnockoutObservableArray<model.ITodo>) {

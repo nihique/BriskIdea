@@ -17,7 +17,8 @@ define(["require", "exports", 'core/dataContext'], function(require, exports, __
         BriskIdeaDataContext.prototype.init = function () {
             var _this = this;
             return _super.prototype.init.call(this, function () {
-                return _this.getTodos(_this.todos);
+                // preload and cache all app data
+                _this.getTodos(_this.todos);
             });
         };
 
