@@ -3,7 +3,7 @@ using System.Data.Entity;
 
 namespace BriskIdea.Models
 {
-    public class DbInitializer : DropCreateDatabaseIfModelChanges<BriskIdeaDbContext>
+    public class DbInitializer : DropCreateDatabaseAlways<BriskIdeaDbContext>
     {
         protected override void Seed(BriskIdeaDbContext context)
         {
@@ -30,7 +30,7 @@ namespace BriskIdea.Models
                     new Todo
                     {
                         Title = "Backup!!!",
-                        Notes = "",
+                        Notes = null,
                         IsDone = false,
                     },
                     new Todo
