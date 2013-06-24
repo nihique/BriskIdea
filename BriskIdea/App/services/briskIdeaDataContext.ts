@@ -10,6 +10,8 @@ export class BriskIdeaDataContext extends dataContext.DataContext {
     }
 
     public getTodos(observable: KnockoutObservableArray<model.ITodo>) {
+        var query = this.breeze.EntityQuery.from('todos');
+        return this.get(query, observable);
     }
 }
 

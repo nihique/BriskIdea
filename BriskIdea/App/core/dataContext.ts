@@ -40,25 +40,21 @@ export class DataContext {
 
     //#region public
 
-    public init(afterBreezeConfigCallback) {
+    public init(afterBreezeConfigCallback: () => void = () => { }) {
         return Q
-            .fcall(() => {
-                logger.instance.log('datacontext.init() started');
-            })
-            .then(this._configureBreeze)
-            .then(afterBreezeConfigCallback)
+            .fcall(() => logger.instance.log('datacontext.init() started'))
+            .then(() => this._configureBreeze())
+            .then(() => afterBreezeConfigCallback())
             .then(() => {
                 return Q.all([
                     //getUserByLogin(config.login, session.user),
                     //getLookups(lookups)
                 ]);
             })
-            .then(() => {
-                logger.instance.log('datacontext.init() finished');
-            });
+            .then(() => logger.instance.log('datacontext.init() finished'));
     }
 
-    public get(query, observable, first) {
+    public get(query: breeze.EntityQuery, observable, first: boolean = false) {
         this.isQuering(true);
         return query
             .using(this.entityManager)
@@ -73,7 +69,7 @@ export class DataContext {
 
     //#region protected
 
-    public succeeded(data, observable, first) {
+    public succeeded(data, observable, first: boolean = false) {
         first = first || false;
         var result = first ? data.results[0] : data.results;
         if (observable) observable(result);
@@ -82,7 +78,8 @@ export class DataContext {
     }
 
     public failed(error) {
-        utils.failed('Error retrieving data:', error);
+        debugger;
+        //utils.failed('Error retrieving data:', error);
     }
 
 

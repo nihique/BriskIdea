@@ -14,6 +14,8 @@ define(["require", "exports", 'core/dataContext'], function(require, exports, __
             _super.call(this, { url: 'api/breeze' });
         }
         BriskIdeaDataContext.prototype.getTodos = function (observable) {
+            var query = this.breeze.EntityQuery.from('todos');
+            return this.get(query, observable);
         };
         return BriskIdeaDataContext;
     })(dataContext.DataContext);
