@@ -1,4 +1,5 @@
 define(["require", "exports", 'durandal/system'], function(require, exports, __system__) {
+    /// <reference path="../reference.ts" />
     var system = __system__;
 
     var Logger = (function () {

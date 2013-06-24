@@ -1,4 +1,5 @@
 define(["require", "exports", 'durandal/system', 'core/logger'], function(require, exports, __system__, __logger__) {
+    /// <reference path="../reference.ts" />
     var system = __system__;
     var logger = __logger__;
 
@@ -20,6 +21,7 @@ define(["require", "exports", 'durandal/system', 'core/logger'], function(requir
                 return _this.hasChanges() && !_this.isSaving();
             });
         }
+        //#region public
         DataContext.prototype.init = function (afterBreezeConfigCallback) {
             if (typeof afterBreezeConfigCallback === "undefined") { afterBreezeConfigCallback = function () {
             }; }
@@ -48,6 +50,8 @@ define(["require", "exports", 'durandal/system', 'core/logger'], function(requir
             });
         };
 
+        //#endregion
+        //#region protected
         DataContext.prototype.succeeded = function (data, observable, first) {
             if (typeof first === "undefined") { first = false; }
             first = first || false;
@@ -62,6 +66,8 @@ define(["require", "exports", 'durandal/system', 'core/logger'], function(requir
             debugger;
         };
 
+        //#endregion
+        //#region private
         DataContext.prototype._configureBreeze = function () {
             var _this = this;
             return Q.fcall(function () {

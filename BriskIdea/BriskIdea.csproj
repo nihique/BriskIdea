@@ -185,11 +185,19 @@
     </Content>
     <TypeScriptCompile Include="App\services\briskIdeaDataContext.ts" />
     <TypeScriptCompile Include="App\models\model.ts" />
+    <TypeScriptCompile Include="App\core\viewModel.ts" />
+    <Content Include="App\core\viewModel.js">
+      <DependentUpon>viewModel.ts</DependentUpon>
+    </Content>
     <Content Include="App\models\model.js">
       <DependentUpon>model.ts</DependentUpon>
     </Content>
     <Content Include="App\services\briskIdeaDataContext.js">
       <DependentUpon>briskIdeaDataContext.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="App\services\briskIdeaViewModel.ts" />
+    <Content Include="App\services\briskIdeaViewModel.js">
+      <DependentUpon>briskIdeaViewModel.ts</DependentUpon>
     </Content>
     <Content Include="App\viewmodels\next.js">
       <DependentUpon>next.ts</DependentUpon>
@@ -295,6 +303,12 @@
     </Content>
     <Content Include="App\models\model.js.map">
       <DependentUpon>model.ts</DependentUpon>
+    </Content>
+    <Content Include="App\core\viewModel.js.map">
+      <DependentUpon>viewModel.ts</DependentUpon>
+    </Content>
+    <Content Include="App\services\briskIdeaViewModel.js.map">
+      <DependentUpon>briskIdeaViewModel.ts</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-2.0.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />

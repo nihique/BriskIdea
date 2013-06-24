@@ -1,22 +1,24 @@
-define(["require", "exports", 'core/logger', 'services/briskIdeaDataContext'], function(require, exports, __logger__, __dataContext__) {
+var __extends = this.__extends || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    __.prototype = b.prototype;
+    d.prototype = new __();
+};
+define(["require", "exports", 'services/briskIdeaViewModel'], function(require, exports, __vm__) {
     
-    var logger = __logger__;
-    var dataContext = __dataContext__;
+    var vm = __vm__;
 
-    var Inbox = (function () {
+    var Inbox = (function (_super) {
+        __extends(Inbox, _super);
         function Inbox() {
-            this.logger = logger.instance;
-            this.dataContext = dataContext.instance;
+            _super.apply(this, arguments);
             this.todos = ko.observableArray();
         }
         Inbox.prototype.activate = function () {
-            var _this = this;
-            return this.dataContext.init().then(function () {
-                return _this.dataContext.getTodos(_this.todos);
-            });
+            return this.dataContext.getTodos(this.todos);
         };
         return Inbox;
-    })();
+    })(vm.BriskIdeaViewModel);
     exports.Inbox = Inbox;
 
     exports.instance = new Inbox();

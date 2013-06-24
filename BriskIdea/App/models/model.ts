@@ -3,6 +3,7 @@
 export interface ITodo {
     id: KnockoutObservable<number>;
     title: KnockoutObservable<string>;
-    description: KnockoutObservable<string>;
+    notes: KnockoutObservable<string>;
+    isDone: KnockoutObservable<boolean>;
     createdOn: KnockoutObservable<Date>;
 }

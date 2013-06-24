@@ -1,9 +1,9 @@
 /// <reference path="../reference.ts" />
 
 import model = require('models/model');
-import dataContext = require('core/dataContext');
+import dc = require('core/dataContext');
 
-export class BriskIdeaDataContext extends dataContext.DataContext {
+export class BriskIdeaDataContext extends dc.DataContext {
 
     constructor() {
         super({ url: 'api/breeze'});

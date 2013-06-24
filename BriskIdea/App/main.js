@@ -1,3 +1,4 @@
+/// <reference path="../Scripts/typings/requirejs/require.d.ts" />
 requirejs.config({
     paths: {
         'text': 'durandal/amd/text'

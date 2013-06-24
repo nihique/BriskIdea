@@ -5,6 +5,6 @@ requirejs.config({
     }
 });
 
-require(['bootstrapper'], (bootstrapper) => { 
+require(['bootstrapper'], bootstrapper => { 
     bootstrapper.run();
 });

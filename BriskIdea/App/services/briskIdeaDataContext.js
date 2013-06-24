@@ -4,9 +4,9 @@ var __extends = this.__extends || function (d, b) {
     __.prototype = b.prototype;
     d.prototype = new __();
 };
-define(["require", "exports", 'core/dataContext'], function(require, exports, __dataContext__) {
+define(["require", "exports", 'core/dataContext'], function(require, exports, __dc__) {
     
-    var dataContext = __dataContext__;
+    var dc = __dc__;
 
     var BriskIdeaDataContext = (function (_super) {
         __extends(BriskIdeaDataContext, _super);
@@ -18,7 +18,7 @@ define(["require", "exports", 'core/dataContext'], function(require, exports, __
             return this.get(query, observable);
         };
         return BriskIdeaDataContext;
-    })(dataContext.DataContext);
+    })(dc.DataContext);
     exports.BriskIdeaDataContext = BriskIdeaDataContext;
 
     exports.instance = new BriskIdeaDataContext();
