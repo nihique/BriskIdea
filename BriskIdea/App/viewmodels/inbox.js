@@ -12,19 +12,14 @@ define(["require", "exports", 'services/briskIdeaViewModel'], function(require, 
         __extends(Inbox, _super);
         function Inbox() {
             _super.apply(this, arguments);
-            this.todos = ko.observableArray();
             this.rapidEntryText = ko.observable();
         }
-        Inbox.prototype.activate = function () {
-            return this.dataContext.getTodos(this.todos);
-        };
-
         Inbox.prototype.rapidEntry = function () {
             var rapidEntryText = this.rapidEntryText();
             if (rapidEntryText === undefined)
                 return;
             var todo = this.dataContext.createTodo({ title: rapidEntryText });
-            this.todos.push(todo);
+            this.dataContext.todos.push(todo);
             this.rapidEntryText(undefined);
         };
         return Inbox;

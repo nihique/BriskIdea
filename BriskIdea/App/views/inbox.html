@@ -6,7 +6,7 @@
         <input type="submit" class="btn" value="Add" data-bind="click: rapidEntry" />
     </form>
 
-    <ul data-bind="foreach: todos">
+    <ul data-bind="foreach: dataContext.todos">
         <li data-bind="text: title"></li>
     </ul>
 </section>

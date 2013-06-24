@@ -12,7 +12,15 @@ define(["require", "exports", 'core/dataContext'], function(require, exports, __
         __extends(BriskIdeaDataContext, _super);
         function BriskIdeaDataContext() {
             _super.call(this, { url: 'api/breeze' });
+            this.todos = ko.observableArray();
         }
+        BriskIdeaDataContext.prototype.init = function () {
+            var _this = this;
+            _super.prototype.init.call(this, function () {
+                return _this.getTodos(_this.todos);
+            });
+        };
+
         BriskIdeaDataContext.prototype.getTodos = function (observable) {
             var query = this.breeze.EntityQuery.from('todos');
             return this.get(query, observable);

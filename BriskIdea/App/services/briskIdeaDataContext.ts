@@ -5,8 +5,14 @@ import dc = require('core/dataContext');
 
 export class BriskIdeaDataContext extends dc.DataContext {
 
+    public todos = ko.observableArray<model.ITodo>();
+
     constructor() {
         super({ url: 'api/breeze'});
+    }
+
+    public init() {
+        super.init(() => this.getTodos(this.todos));
     }
 
     public getTodos(observable: KnockoutObservableArray<model.ITodo>) {
@@ -18,7 +24,6 @@ export class BriskIdeaDataContext extends dc.DataContext {
         if (!config.hasOwnProperty('createdOn')) config.createdOn = new Date();
         return <model.ITodo> this.createEntity('Todo', config, state);
     }
-
 }
 
 export var instance = new BriskIdeaDataContext();
