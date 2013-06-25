@@ -205,7 +205,6 @@
       <DependentUpon>next.ts</DependentUpon>
     </Content>
     <Content Include="App\views\next.html" />
-    <Content Include="App\_legacy\datacontext.js" />
     <None Include="Scripts\breeze.intellisense.js" />
     <Content Include="Scripts\breeze.debug.js" />
     <Content Include="Scripts\breeze.min.js" />
@@ -235,7 +234,6 @@
     <Content Include="App\durandal\viewModel.js" />
     <Content Include="App\durandal\viewModelBinder.js" />
     <Content Include="App\durandal\widget.js" />
-    <Content Include="App\main-built.js" />
     <TypeScriptCompile Include="App\main.ts" />
     <Content Include="App\main.js">
       <DependentUpon>main.ts</DependentUpon>

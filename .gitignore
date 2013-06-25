@@ -1,3 +1,17 @@
+##############################################
+# Removing JS that are done as a TypeScript  #
+##############################################
+BriskIdea/App/*.js*
+BriskIdea/App/*/*.js*
+BriskIdea/App/*/*/*.js*
+BriskIdea/App/*/*/*/*.js*
+BriskIdea/App/*/*/*/*/*.js*
+!BriskIdea/App/Durandal/*.js*
+!BriskIdea/App/Durandal/*/*.js*
+!BriskIdea/App/Durandal/*/*/*.js*
+!BriskIdea/App/Durandal/*/*/*/*.js*
+!BriskIdea/App/Durandal/*/*/*/*/*.js*
+
 ###################
 # custom          #
 ###################
