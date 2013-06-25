@@ -1,6 +1,5 @@
-/// <reference path="../reference.ts" />
+/// <reference path="../reference.d.ts" />
 
-import model = require('models/model');
 import vm = require('services/briskIdeaViewModel');
 
 export class Inbox extends vm.BriskIdeaViewModel {

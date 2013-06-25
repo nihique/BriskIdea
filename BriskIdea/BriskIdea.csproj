@@ -186,13 +186,9 @@
       <DependentUpon>logger.ts</DependentUpon>
     </Content>
     <TypeScriptCompile Include="App\services\briskIdeaDataContext.ts" />
-    <TypeScriptCompile Include="App\models\model.ts" />
     <TypeScriptCompile Include="App\core\viewModel.ts" />
     <Content Include="App\core\viewModel.js">
       <DependentUpon>viewModel.ts</DependentUpon>
-    </Content>
-    <Content Include="App\models\model.js">
-      <DependentUpon>model.ts</DependentUpon>
     </Content>
     <Content Include="App\services\briskIdeaDataContext.js">
       <DependentUpon>briskIdeaDataContext.ts</DependentUpon>
@@ -238,9 +234,9 @@
     <Content Include="App\main.js">
       <DependentUpon>main.ts</DependentUpon>
     </Content>
-    <TypeScriptCompile Include="App\reference.ts" />
+    <TypeScriptCompile Include="App\reference.d.ts" />
     <Content Include="App\reference.js">
-      <DependentUpon>reference.ts</DependentUpon>
+      <DependentUpon>reference.d.ts</DependentUpon>
     </Content>
     <TypeScriptCompile Include="App\viewmodels\shell.ts" />
     <TypeScriptCompile Include="App\viewmodels\inbox.ts" />
@@ -281,7 +277,7 @@
       <DependentUpon>bootstrapper.ts</DependentUpon>
     </Content>
     <Content Include="App\reference.js.map">
-      <DependentUpon>reference.ts</DependentUpon>
+      <DependentUpon>reference.d.ts</DependentUpon>
     </Content>
     <Content Include="App\viewmodels\shell.js.map">
       <DependentUpon>shell.ts</DependentUpon>
@@ -300,9 +296,6 @@
     </Content>
     <Content Include="App\services\briskIdeaDataContext.js.map">
       <DependentUpon>briskIdeaDataContext.ts</DependentUpon>
-    </Content>
-    <Content Include="App\models\model.js.map">
-      <DependentUpon>model.ts</DependentUpon>
     </Content>
     <Content Include="App\core\viewModel.js.map">
       <DependentUpon>viewModel.ts</DependentUpon>
@@ -340,6 +333,7 @@
     <Content Include="Scripts\jquery-2.0.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App\models\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>

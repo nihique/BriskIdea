@@ -1,4 +1,5 @@
-/// <reference path="../reference.ts" />
+/// <reference path="../reference.d.ts" />
+
 import app = require('durandal/app');
 import system = require('durandal/system');
 import router = require('durandal/plugins/router');

@@ -1,4 +1,4 @@
-/// <reference path="../reference.ts" />
+/// <reference path="../reference.d.ts" />
 
 import system = require('durandal/system');
 import logger = require('core/logger');

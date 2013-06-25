@@ -1,11 +1,10 @@
-/// <reference path="../reference.ts" />
+/// <reference path="../reference.d.ts" />
 
-import model = require('models/model');
 import dc = require('core/dataContext');
 
 export class BriskIdeaDataContext extends dc.DataContext {
 
-    public todos = ko.observableArray<model.ITodo>();
+    public todos = ko.observableArray<ITodo>();
 
     constructor() {
         super({ url: 'api/breeze'});
@@ -18,14 +17,14 @@ export class BriskIdeaDataContext extends dc.DataContext {
         });
     }
 
-    public getTodos(observable: KnockoutObservableArray<model.ITodo>) {
+    public getTodos(observable: KnockoutObservableArray<ITodo>) {
         var query = this.breeze.EntityQuery.from('todos');
         return this.get(query, observable);
     }
 
     public createTodo(config?: any, state?: breeze.EntityStateSymbol) {
         if (!config.hasOwnProperty('createdOn')) config.createdOn = new Date();
-        return <model.ITodo> this.createEntity('Todo', config, state);
+        return <ITodo> this.createEntity('Todo', config, state);
     }
 }
 

@@ -1,4 +1,5 @@
 /// <reference path="../Scripts/typings/durandal/durandal.d.ts" />
+
 import app = require('durandal/app');
 import system = require('durandal/system');
 import viewLocator = require('durandal/viewLocator');

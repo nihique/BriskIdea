@@ -1,4 +1,4 @@
-/// <reference path="../reference.ts" />
+/// <reference path="../reference.d.ts" />
 
 import vm = require('core/viewModel');
 import dc = require('services/briskIdeaDataContext');
