@@ -43,10 +43,7 @@ export class Bootstrapper implements IBootstrapper {
 
                 //Show the app by setting the root view model for our application with a transition.
                 app.setRoot('viewmodels/shell', 'entrance');
-            })
-
-            // init datacontext
-            .then(() => dataContext.instance.init());
+            });
     }
 }
 

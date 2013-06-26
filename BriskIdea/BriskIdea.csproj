@@ -187,6 +187,10 @@
     </Content>
     <TypeScriptCompile Include="App\services\briskIdeaDataContext.ts" />
     <TypeScriptCompile Include="App\core\viewModel.ts" />
+    <TypeScriptCompile Include="App\core\utils.ts" />
+    <Content Include="App\core\utils.js">
+      <DependentUpon>utils.ts</DependentUpon>
+    </Content>
     <Content Include="App\core\viewModel.js">
       <DependentUpon>viewModel.ts</DependentUpon>
     </Content>
@@ -201,6 +205,9 @@
       <DependentUpon>next.ts</DependentUpon>
     </Content>
     <Content Include="App\views\next.html" />
+    <Content Include="App\core\utils.js.map">
+      <DependentUpon>utils.ts</DependentUpon>
+    </Content>
     <None Include="Scripts\breeze.intellisense.js" />
     <Content Include="Scripts\breeze.debug.js" />
     <Content Include="Scripts\breeze.min.js" />
@@ -322,6 +329,15 @@
     <Content Include="Scripts\typings\q\Q.d.ts" />
     <Content Include="Scripts\typings\requirejs\require.d.ts" />
     <Content Include="Scripts\typings\toastr\toastr.d.ts" />
+    <Content Include="Scripts\typings\underscore-string\underscore.string.d.ts" />
+    <Content Include="Scripts\typings\underscore\underscore-typed-1.4.2.d.ts" />
+    <Content Include="Scripts\typings\underscore\underscore-typed-1.4.3.d.ts" />
+    <Content Include="Scripts\typings\underscore\underscore-typed.d.ts" />
+    <Content Include="Scripts\typings\underscore\underscore.d.ts" />
+    <Content Include="Scripts\underscore.js" />
+    <Content Include="Scripts\underscore.min.js" />
+    <Content Include="Scripts\underscore.string.js" />
+    <Content Include="Scripts\underscore.string.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

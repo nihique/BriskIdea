@@ -12,6 +12,8 @@ namespace BriskIdea
 
             bundles.Add(
                 new ScriptBundle("~/scripts/vendor")
+                    .Include("~/Scripts/underscore.min.js")
+                    .Include("~/Scripts/underscore.string.min.js")
                     .Include("~/Scripts/q.min.js")
                     .Include("~/Scripts/jquery-{version}.js")
                     .Include("~/Scripts/knockout-{version}.js")

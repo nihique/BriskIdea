@@ -3,6 +3,7 @@
 import app = require('durandal/app');
 import system = require('durandal/system');
 import router = require('durandal/plugins/router');
+import dataContext = require('services/briskIdeaDataContext');
 
 export class Shell {
     router;
@@ -13,7 +14,10 @@ export class Shell {
     }
 
     activate() {
-        return router.activate('inbox');
+        // init datacontext
+        return Q
+            .fcall(() => dataContext.instance.init())
+            .then(() => router.activate('inbox'));
     }
 
     search() {

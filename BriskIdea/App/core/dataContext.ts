@@ -2,6 +2,7 @@
 
 import system = require('durandal/system');
 import logger = require('core/logger');
+import utils = require('core/utils');
 
 export class DataContext {
 
@@ -17,6 +18,10 @@ export class DataContext {
     public breeze = breeze;
     public metadataStore: breeze.MetadataStore;
     public entityManager: breeze.EntityManager;
+
+    public AUTO_SYNC_INTERVAL = 5000;
+    
+    private _autoSyncInterval: number = undefined;
 
     constructor(options: { 
         url: string; 
@@ -45,14 +50,57 @@ export class DataContext {
             .fcall(() => logger.instance.log('datacontext.init() started'))
             .then(() => this._configureBreeze())
             .then(() => afterBreezeConfigCallback())
-            .then(() => {
-                return Q.all([
-                    //getUserByLogin(config.login, session.user),
-                    //getLookups(lookups)
-                ]);
-            })
+            .then(() => Q.all([
+                //getUserByLogin(config.login, session.user),
+                //getLookups(lookups)
+            ]))
             .then(() => logger.instance.log('datacontext.init() finished'));
     }
+
+    public turnOnAutoSync(intervalInMsec: number = this.AUTO_SYNC_INTERVAL) {
+        this.turnOffAutoSync();
+        this._autoSyncInterval = setInterval(() => this.syncChanges(), intervalInMsec);
+    }
+
+    public turnOffAutoSync() {
+        if (this._autoSyncInterval === undefined) return;
+        clearInterval(this._autoSyncInterval);
+        this._autoSyncInterval = undefined;
+    }
+
+    public syncChanges() {
+        this.saveChanges();
+    }
+
+    public saveChanges() {
+        if (!this.entityManager.hasChanges()) return;
+
+        this.isSaving(true);
+
+        logger.instance.log('saving changes started');
+
+        var entities = this.entityManager.getChanges();
+
+        _.forEach(entities, entity => {
+            if (entity.hasOwnProperty('updatedBy')) {
+                debugger;
+                throw new Error('TODO');
+                //entity.updatedBy(session.user().fullNameLastFirst());
+            }
+            if (entity.hasOwnProperty('updatedOn')) {
+                entity['updatedOn'](new Date());
+            }
+        });
+
+        return this.entityManager
+            .saveChanges()
+            .then(() => this._saveSucceeded)
+            .fail(() => this._saveFailed)
+            .fin(() => {
+                this.isSaving(false);
+                logger.instance.log('saving changes finished');
+            });
+    } 
 
     public createEntity(typeName: string, config?: any, state?: breeze.EntityStateSymbol) {
         return this.entityManager.createEntity(typeName, config, state);
@@ -63,8 +111,8 @@ export class DataContext {
         return query
             .using(this.entityManager)
             .execute()
-            .then((data) => this.succeeded(data, observable, first))
-            .fail(this.failed)
+            .then((data) => this._succeededProtected(data, observable, first))
+            .fail(this._failedProtected)
             .fin(() => this.isQuering(false));
     }
 
@@ -73,7 +121,7 @@ export class DataContext {
 
     //#region protected
 
-    public succeeded(data, observable, first: boolean = false) {
+    public _succeededProtected(data, observable, first: boolean = false) {
         first = first || false;
         var result = first ? data.results[0] : data.results;
         if (observable) observable(result);
@@ -81,9 +129,9 @@ export class DataContext {
         logger.instance.log(msg, data, system.getModuleId(self), false);
     }
 
-    public failed(error) {
+    public _failedProtected(error) {
         debugger;
-        //utils.failed('Error retrieving data:', error);
+        utils.failed('Error retrieving data:', error);
     }
 
 
@@ -129,5 +177,54 @@ export class DataContext {
         };
     }
 
+    private _saveSucceeded (saveResult) {
+        logger.instance.log("Changes saved successfully.", saveResult, system.getModuleId(self), true);
+    }
+
+    private _saveFailed (error) {
+        var msg = "<strong>Save Failed:</strong> " + this._getErrorMessages(error);
+        logger.instance.logError(msg, error, system.getModuleId(self), true);
+        error.message = msg;
+        throw error;
+    }
+    private _getErrorMessages(error) {
+        var msg = error.message;
+        var isValidationError = msg.match(/validation error/i);
+        if (isValidationError) return this._getValidationMessages(error);
+        return msg;
+    }
+
+    private _getValidationMessages(error) {
+        try {
+            var errorList = _(error.entitiesWithErrors)
+                .map(entity => {
+                    return _(entity.entityAspect.getValidationErrors())
+                        .map(this._formatPropertyError)
+                        .join('');
+                });
+
+            return _.sprintf('<div style="margin-top: 5px">%s</div>', errorList);
+
+        }
+        catch (e)
+        {
+            logger.instance.log('getValidationMessages() error', error);
+        }
+        return 'validation error';
+    }
+
+    private _formatPropertyError(valError) {
+        var propertyName = _(valError.errorMessage)
+            .chain()
+            .strRight("'")
+            .strLeft("'")
+            .humanize()
+            .titleize()
+            .value();
+
+        var whatIsWrong = _.strRightBack(valError.errorMessage, "'");
+
+        return _.sprintf('<div><em>%s</em>%s', propertyName, whatIsWrong);
+    }
     //#endregion
 }
