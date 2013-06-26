@@ -35,12 +35,8 @@ export class DataContext {
         this.isSaving = ko.observable(false);
         this.isDeleting = ko.observable(false);
         this.isQuering = ko.observable(false);
-        this.isWorking = ko.computed(() => { 
-            return this.isSaving() || this.isDeleting() || this.isQuering();
-        });
-        this.canSave = ko.computed(() => { 
-            return this.hasChanges() && !this.isSaving()
-        });
+        this.isWorking = ko.computed(() => this.isSaving() || this.isDeleting() || this.isQuering());
+        this.canSave = ko.computed(() => this.hasChanges() && !this.isSaving());
     }
 
     //#region public
@@ -94,8 +90,8 @@ export class DataContext {
 
         return this.entityManager
             .saveChanges()
-            .then(() => this._saveSucceeded)
-            .fail(() => this._saveFailed)
+            .then(saveResult => this._saveSucceeded(saveResult))
+            .fail(error => this._saveFailed(error))
             .fin(() => {
                 this.isSaving(false);
                 logger.instance.log('saving changes finished');
@@ -111,7 +107,7 @@ export class DataContext {
         return query
             .using(this.entityManager)
             .execute()
-            .then((data) => this._succeededProtected(data, observable, first))
+            .then(data => this._succeededProtected(data, observable, first))
             .fail(this._failedProtected)
             .fin(() => this.isQuering(false));
     }
@@ -141,28 +137,23 @@ export class DataContext {
     //#region private
 
     private _configureBreeze() {
-        return Q
-            .fcall(() => {
-                breeze.NamingConvention.camelCase.setAsDefault();
-                this._configureAjaxAdapter();
-                this._configureManager();
-                this._configureEntityQuery();
-            })
-            .then(() => { return this.metadataStore.fetchMetadata(this.url); });
+        breeze.NamingConvention.camelCase.setAsDefault();
+        this._configureAjaxAdapter();
+        this._configureManager();
+        this._configureEntityQuery();
+        return Q.fcall(() => this.metadataStore.fetchMetadata(this.url));
     }
 
     private _configureEntityQuery() {
         var fromOrig = breeze.EntityQuery.from;
-        breeze.EntityQuery.from =  (entities) => {
-            return fromOrig(entities)
-                .withParameters({ db: this.db, login: this.login });
-        };
+        breeze.EntityQuery.from =
+            entities => fromOrig(entities).withParameters({ db: this.db, login: this.login })
     }
 
     private _configureManager() {
         this.entityManager = new breeze.EntityManager(this.url);
         this.metadataStore = this.entityManager.metadataStore;
-        this.entityManager.hasChangesChanged.subscribe((eventArgs) => {
+        this.entityManager.hasChangesChanged.subscribe(eventArgs => {
             this.hasChanges(eventArgs.hasChanges);
         });
     }
@@ -170,7 +161,7 @@ export class DataContext {
     private _configureAjaxAdapter() {
         var ajaxAdapter = breeze.config.getAdapterInstance("ajax");
         ajaxAdapter.defaultSettings = {
-            beforeSend: (xhr) => {
+            beforeSend: xhr => {
                 xhr.setRequestHeader("db", this.db);
                 xhr.setRequestHeader("login", this.login);
             }
@@ -181,13 +172,13 @@ export class DataContext {
         logger.instance.log("Changes saved successfully.", saveResult, system.getModuleId(self), true);
     }
 
-    private _saveFailed (error) {
+    private _saveFailed(error: { message: string }) {
         var msg = "<strong>Save Failed:</strong> " + this._getErrorMessages(error);
         logger.instance.logError(msg, error, system.getModuleId(self), true);
         error.message = msg;
         throw error;
     }
-    private _getErrorMessages(error) {
+    private _getErrorMessages(error: { message: string }) {
         var msg = error.message;
         var isValidationError = msg.match(/validation error/i);
         if (isValidationError) return this._getValidationMessages(error);
@@ -197,14 +188,11 @@ export class DataContext {
     private _getValidationMessages(error) {
         try {
             var errorList = _(error.entitiesWithErrors)
-                .map(entity => {
-                    return _(entity.entityAspect.getValidationErrors())
+                .map(entity =>
+                    _(entity.entityAspect.getValidationErrors())
                         .map(this._formatPropertyError)
-                        .join('');
-                });
-
+                        .join(''));
             return _.sprintf('<div style="margin-top: 5px">%s</div>', errorList);
-
         }
         catch (e)
         {
@@ -226,5 +214,6 @@ export class DataContext {
 
         return _.sprintf('<div><em>%s</em>%s', propertyName, whatIsWrong);
     }
+
     //#endregion
 }

@@ -11,8 +11,7 @@ export function failed(
     var msg = '<strong>' + title + '</strong><br />' + error.message;
 
     if (error.responseText) {
-        msg += '<br /><br /><strong>Details:</strong><br />'
-        + _.strLeft(error.responseText, '\n');
+        msg += '<br /><br /><strong>Details:</strong><br />' + _.strLeft(error.responseText, '\n');
     }
 
     logger.instance.logError(msg, error, system.getModuleId(self), true);
