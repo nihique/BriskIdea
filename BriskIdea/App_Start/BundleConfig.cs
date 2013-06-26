@@ -20,6 +20,7 @@ namespace BriskIdea
                     .Include("~/Scripts/sammy-{version}.js")
                     .Include("~/Scripts/bootstrap.min.js")
                     .Include("~/Scripts/breeze.min.js")
+                    .Include("~/Scripts/toastr.min.js")
                 );
 
             bundles.Add(
@@ -29,6 +30,7 @@ namespace BriskIdea
                     .Include("~/Content/bootstrap-responsive.min.css")
                     .Include("~/Content/font-awesome.min.css")
                     .Include("~/Content/durandal.css")
+                    .Include("~/Content/toastr.min.css")
                     .Include("~/Content/app.css")
                 );
         }

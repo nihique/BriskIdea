@@ -208,9 +208,14 @@
     <Content Include="App\core\utils.js.map">
       <DependentUpon>utils.ts</DependentUpon>
     </Content>
+    <Content Include="Content\toastr.css" />
+    <Content Include="Content\toastr.less" />
     <None Include="Scripts\breeze.intellisense.js" />
+    <Content Include="Content\toastr.min.css" />
     <Content Include="Scripts\breeze.debug.js" />
     <Content Include="Scripts\breeze.min.js" />
+    <Content Include="Scripts\toastr.js" />
+    <Content Include="Scripts\toastr.min.js" />
     <Content Include="Scripts\typings\breeze\breeze-1.0.d.ts" />
     <Content Include="Scripts\typings\breeze\breeze.d.ts" />
     <TypeScriptCompile Include="App\bootstrapper.ts" />
