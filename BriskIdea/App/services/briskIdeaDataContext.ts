@@ -12,9 +12,10 @@ export class BriskIdeaDataContext extends dc.DataContext {
 
     public init() {
         return super.init(() => {
-            // preload and cache all app data 
             return this
+                // preload and cache all app data 
                 .getTodos(this.todos)
+                // start automatic data synchronization
                 .then(() => this.turnOnAutoSync());
         });
     }

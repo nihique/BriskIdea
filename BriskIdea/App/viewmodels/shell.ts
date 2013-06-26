@@ -6,21 +6,22 @@ import router = require('durandal/plugins/router');
 import dataContext = require('services/briskIdeaDataContext');
 
 export class Shell {
-    router;
+    public router;
 
     constructor() {
         system.log('constructor()', this)
         this.router = router;
     }
 
-    activate() {
-        // init datacontext
+    public activate() {
         return Q
+            // init datacontext
             .fcall(() => dataContext.instance.init())
+            // start router - navigate to home page (inbox)
             .then(() => router.activate('inbox'));
     }
 
-    search() {
+    public search() {
         return app.showMessage('Search not yet implemented...')
     }
 }
