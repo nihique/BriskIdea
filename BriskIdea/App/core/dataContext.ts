@@ -19,7 +19,7 @@ export class DataContext {
     public metadataStore: breeze.MetadataStore;
     public entityManager: breeze.EntityManager;
 
-    public AUTO_SYNC_INTERVAL = 5000;
+    public AUTO_SYNC_INTERVAL = 10000;
     
     private _autoSyncInterval: number = undefined;
 

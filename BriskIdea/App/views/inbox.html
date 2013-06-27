@@ -1,12 +1,39 @@
 ﻿<section>
     <h2>Inbox</h2>
 
-    <form data-bind="submit: rapidEntry">
-        Rapid Entry: <input data-bind="value: rapidEntryText"/>
-        <input type="submit" class="btn" value="Add" />
+    <form class="form-inline" data-bind="submit: rapidEntry">
+        <input type="text" class="input-xxlarge" data-bind="value: rapidEntryText" placeholder="Rapid Entry"/>
+        <input type="submit" class="btn btn-inverse" value="Add" />
     </form>
 
-    <ul data-bind="foreach: dataContext.todos">
-        <li data-bind="text: title">Title</li>
-    </ul>
+    <hr />
+
+    <section data-bind="if: todosActive().length">
+        <h3>Active</h3>
+        <div data-bind="foreach: todosActive">
+            <form class="form-inline">
+                <input type="text" value="Title" class="input-xxlarge" data-bind="value: title" />
+                <div class="btn-group">
+                    <input type="button" class="btn" value="Delete" data-bind="click: $root.delete" />
+                    <input type="button" class="btn btn-primary" value="Make Done" data-bind="click: $root.makeDone"/>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <hr />
+
+    <section data-bind="if: todosDone().length">
+        <h3>Done</h3>
+        <div data-bind="foreach: todosDone">
+            <form class="form-inline">
+                <input type="text" value="Title" class="input-xxlarge" data-bind="value: title" />
+                <div class="btn-group">
+                    <input type="button" class="btn" value="Delete" data-bind="click: $root.delete" />
+                    <input type="button" class="btn btn-primary" value="Make Active" data-bind="click: $root.makeActive"/>
+                </div>
+            </form>
+        </div>
+    </section>
+
 </section>

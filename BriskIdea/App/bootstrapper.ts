@@ -12,6 +12,7 @@ export interface IBootstrapper {
 }
 
 export class Bootstrapper implements IBootstrapper {
+
     public run() {
         //>>excludeStart("build", true);
         system.debug(true);
