@@ -5,11 +5,16 @@ import vm = require('services/briskIdeaViewModel');
 
 class TodoList extends vm.BriskIdeaViewModel {
 
-    public todos = ko.observableArray<ITodo>();
+    public todos: KnockoutComputed<Array<ITodo>>;
 
-    constructor(todos: KnockoutObservableArray<ITodo>) {
+    constructor(
+        public title: string,
+        filter: (todos: Array<ITodo>) => Array<ITodo>
+        ) {
         super();
-        this.todos = todos;
+        this.todos = ko.computed(() => {
+            return filter(this.dataContext.todos());
+        });
     }
 
     public toggleDone(todo: ITodo) {
@@ -24,6 +29,11 @@ class TodoList extends vm.BriskIdeaViewModel {
     public toggleDoneText(todo: ITodo) {
         return todo.isDone() === true ? 'Undone' : 'Done';
     }
+
+    public filter() {
+        return ko.computed()
+    }
+
 }
 
 export = TodoList;

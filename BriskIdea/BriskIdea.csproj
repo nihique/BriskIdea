@@ -202,12 +202,17 @@
       <DependentUpon>briskIdeaViewModel.ts</DependentUpon>
     </Content>
     <TypeScriptCompile Include="App\viewmodels\todoList.ts" />
+    <TypeScriptCompile Include="App\viewmodels\rapidEntry.ts" />
     <Content Include="App\viewmodels\next.js">
       <DependentUpon>next.ts</DependentUpon>
+    </Content>
+    <Content Include="App\viewmodels\rapidEntry.js">
+      <DependentUpon>rapidEntry.ts</DependentUpon>
     </Content>
     <Content Include="App\viewmodels\todoList.js">
       <DependentUpon>todoList.ts</DependentUpon>
     </Content>
+    <Content Include="App\views\rapidEntry.html" />
     <Content Include="App\views\next.html" />
     <Content Include="App\core\utils.js.map">
       <DependentUpon>utils.ts</DependentUpon>
@@ -217,6 +222,9 @@
     <Content Include="Content\toastr.less" />
     <Content Include="App\viewmodels\todoList.js.map">
       <DependentUpon>todoList.ts</DependentUpon>
+    </Content>
+    <Content Include="App\viewmodels\rapidEntry.js.map">
+      <DependentUpon>rapidEntry.ts</DependentUpon>
     </Content>
     <None Include="Scripts\breeze.intellisense.js" />
     <Content Include="Content\toastr.min.css" />

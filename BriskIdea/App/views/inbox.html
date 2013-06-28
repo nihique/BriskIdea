@@ -1,21 +1,6 @@
 ﻿<section>
     <h2>Inbox</h2>
-
-    <form class="form-inline" data-bind="submit: rapidEntry">
-        <input type="text" class="input-xxlarge" data-bind="value: rapidEntryText" placeholder="Rapid Entry"/>
-        <input type="submit" class="btn btn-inverse" value="Add" />
-    </form>
-
-    <section data-bind="if: todosActive().length">
-        <hr />
-        <h3>Active</h3>
-        <!-- ko compose: todoListActive --><!-- /ko -->
-    </section>
-
-    <section data-bind="if: todosDone().length">
-        <hr />
-        <h3>Done</h3>
-        <!-- ko compose: todoListDone --><!-- /ko -->
-    </section>
-
+    <!-- ko compose: 'viewmodels/rapidEntry' --><!-- /ko -->
+    <!-- ko compose: todoListActive --><!-- /ko -->
+    <!-- ko compose: todoListDone --><!-- /ko -->
 </section>

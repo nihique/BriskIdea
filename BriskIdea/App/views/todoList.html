@@ -1,10 +1,15 @@
-﻿<div data-bind="foreach: todos">
-    <form class="form-inline">
-        <input type="text" value="Title" class="input-xxlarge" data-bind="value: title" />
-        <div class="btn-group">
-            <input type="button" class="btn" value="Delete" data-bind="click: $root.delete" />
-            <input type="button" class="btn btn-primary" value="Done/Undone"
-                data-bind="click: $root.toggleDone, value: $root.toggleDoneText($data)" />
-        </div>
-    </form>
-</div>
+﻿<section data-bind="if: todos().length">
+    <hr />
+    <h3 data-bind="text: title"></h3>
+    <div data-bind="foreach: todos">
+        <form class="form-inline">
+            <input type="text" value="Title" class="input-xxlarge" data-bind="value: title" />
+            <div class="btn-group">
+                <input type="button" class="btn" value="Delete" data-bind="click: $root.delete" />
+                <input type="button" class="btn btn-primary" value="Done/Undone"
+                    data-bind="click: $root.toggleDone, value: $root.toggleDoneText($data)" />
+            </div>
+        </form>
+    </div>
+</section>
+
