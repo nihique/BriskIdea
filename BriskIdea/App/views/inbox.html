@@ -6,34 +6,16 @@
         <input type="submit" class="btn btn-inverse" value="Add" />
     </form>
 
-    <hr />
-
     <section data-bind="if: todosActive().length">
+        <hr />
         <h3>Active</h3>
-        <div data-bind="foreach: todosActive">
-            <form class="form-inline">
-                <input type="text" value="Title" class="input-xxlarge" data-bind="value: title" />
-                <div class="btn-group">
-                    <input type="button" class="btn" value="Delete" data-bind="click: $root.delete" />
-                    <input type="button" class="btn btn-primary" value="Make Done" data-bind="click: $root.makeDone"/>
-                </div>
-            </form>
-        </div>
+        <!-- ko compose: todoListActive --><!-- /ko -->
     </section>
 
-    <hr />
-
     <section data-bind="if: todosDone().length">
+        <hr />
         <h3>Done</h3>
-        <div data-bind="foreach: todosDone">
-            <form class="form-inline">
-                <input type="text" value="Title" class="input-xxlarge" data-bind="value: title" />
-                <div class="btn-group">
-                    <input type="button" class="btn" value="Delete" data-bind="click: $root.delete" />
-                    <input type="button" class="btn btn-primary" value="Make Active" data-bind="click: $root.makeActive"/>
-                </div>
-            </form>
-        </div>
+        <!-- ko compose: todoListDone --><!-- /ko -->
     </section>
 
 </section>

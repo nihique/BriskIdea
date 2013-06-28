@@ -30,25 +30,22 @@ export class Bootstrapper implements IBootstrapper {
 
             // init durandal
             .then(() => {
-                //Replace 'viewmodels' in the moduleId with 'views' to locate the view.
-                //Look for partial views in a 'views' folder in the root.
                 viewLocator.useConvention();
-
-                //configure routing
-                router.useConvention();
-                router.mapNav('inbox');
-                router.mapNav('next');
-                router.mapNav('later');
-                router.mapNav('waiting');
-                router.mapNav('scheduled');
-                router.mapNav('someday');
-                router.mapNav('focus');
-
+                this._configureRouter();
                 app.adaptToDevice();
-
-                //Show the app by setting the root view model for our application with a transition.
                 app.setRoot('viewmodels/shell', 'entrance');
             });
+    }
+
+    private _configureRouter() {
+        router.useConvention();
+        router.mapNav('inbox');
+        router.mapNav('next');
+        router.mapNav('later');
+        router.mapNav('waiting');
+        router.mapNav('scheduled');
+        router.mapNav('someday');
+        router.mapNav('focus');
     }
 
     private _initVendorLibs() {
