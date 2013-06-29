@@ -7,14 +7,9 @@ class TodoList extends vm.BriskIdeaViewModel {
 
     public todos: KnockoutComputed<Array<ITodo>>;
 
-    constructor(
-        public title: string,
-        filter: (todos: Array<ITodo>) => Array<ITodo>
-        ) {
+    constructor(public title: string, filter: (todos: Array<ITodo>) => Array<ITodo>) {
         super();
-        this.todos = ko.computed(() => {
-            return filter(this.dataContext.todos());
-        });
+        this.todos = ko.computed(() => filter(this.dataContext.todos()));
     }
 
     public toggleDone(todo: ITodo) {
@@ -29,11 +24,6 @@ class TodoList extends vm.BriskIdeaViewModel {
     public toggleDoneText(todo: ITodo) {
         return todo.isDone() === true ? 'Undone' : 'Done';
     }
-
-    public filter() {
-        return ko.computed()
-    }
-
 }
 
 export = TodoList;
