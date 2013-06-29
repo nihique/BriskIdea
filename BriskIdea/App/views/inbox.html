@@ -1,6 +1,6 @@
 ﻿<section>
     <h2>Inbox</h2>
-    <!-- ko compose: 'viewmodels/rapidEntry' --><!-- /ko -->
-    <!-- ko compose: todoListActive --><!-- /ko -->
-    <!-- ko compose: todoListDone --><!-- /ko -->
+    <!-- ko compose: { model: 'viewmodels/rapidEntry', cacheViews: true } --><!-- /ko -->
+    <!-- ko compose: { model: todoListActive, cacheViews: true } --><!-- /ko -->
+    <!-- ko compose: { model: todoListDone, cacheViews: true } --><!-- /ko -->
 </section>
