@@ -11,19 +11,6 @@ class TodoList extends vm.BriskIdeaViewModel {
         super();
         this.todos = ko.computed(() => filter(this.dataContext.todos()));
     }
-
-    public toggleDone(todo: ITodo) {
-        todo.isDone(!todo.isDone());
-    }
-
-    public delete(todo: ITodo) {
-        //this.dataContext.delete(todo);
-        return app.showMessage('TODO: delete');
-    }
-
-    public toggleDoneText(todo: ITodo) {
-        return todo.isDone() === true ? 'Undone' : 'Done';
-    }
 }
 
 export = TodoList;

@@ -203,15 +203,20 @@
     </Content>
     <TypeScriptCompile Include="App\viewmodels\todoList.ts" />
     <TypeScriptCompile Include="App\viewmodels\rapidEntry.ts" />
+    <TypeScriptCompile Include="App\viewmodels\todoItem.ts" />
     <Content Include="App\viewmodels\next.js">
       <DependentUpon>next.ts</DependentUpon>
     </Content>
     <Content Include="App\viewmodels\rapidEntry.js">
       <DependentUpon>rapidEntry.ts</DependentUpon>
     </Content>
+    <Content Include="App\viewmodels\todoItem.js">
+      <DependentUpon>todoItem.ts</DependentUpon>
+    </Content>
     <Content Include="App\viewmodels\todoList.js">
       <DependentUpon>todoList.ts</DependentUpon>
     </Content>
+    <Content Include="App\views\todoItem.html" />
     <Content Include="App\views\rapidEntry.html" />
     <Content Include="App\views\next.html" />
     <Content Include="App\core\utils.js.map">
@@ -225,6 +230,9 @@
     </Content>
     <Content Include="App\viewmodels\rapidEntry.js.map">
       <DependentUpon>rapidEntry.ts</DependentUpon>
+    </Content>
+    <Content Include="App\viewmodels\todoItem.js.map">
+      <DependentUpon>todoItem.ts</DependentUpon>
     </Content>
     <None Include="Scripts\breeze.intellisense.js" />
     <Content Include="Content\toastr.min.css" />

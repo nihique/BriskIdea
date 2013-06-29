@@ -12,8 +12,8 @@ export class Inbox extends vm.BriskIdeaViewModel {
 
     public activate(routeInfo) {
         if (this._activated === true) return;
-        this.todoListActive = new TodoList('Active', (todos) => _.filter(todos, x => !x.isDone()));
-        this.todoListDone = new TodoList('Done', (todos) => _.filter(todos, x => x.isDone()));
+        this.todoListActive = new TodoList('Active', todos => _.filter(todos, x => !x.isDone()));
+        this.todoListDone = new TodoList('Done', todos => _.filter(todos, x => x.isDone()));
         this._activated = true;
     }
 }

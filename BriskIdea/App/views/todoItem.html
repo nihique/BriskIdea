@@ -1,0 +1,9 @@
+﻿<form class="form-inline" data-bind="with: todo">
+    <input type="text" value="title" class="input-xxlarge" data-bind="value: title" />
+    <div class="btn-group">
+        <input type="button" class="btn" value="Delete" data-bind="click: $root.delete" />
+        <input type="button" class="btn btn-primary" value="Done/Undone"
+            data-bind="click: $root.toggleDone, value: $root.toggleDoneText($data)" />
+    </div>
+</form>
+
