@@ -1,9 +1,13 @@
-﻿<form class="form-inline" data-bind="with: todo">
-    <input type="text" value="title" class="input-xxlarge" data-bind="value: title" />
-    <div class="btn-group">
-        <input type="button" class="btn" value="Delete" data-bind="click: $root.delete" />
-        <input type="button" class="btn btn-primary" value="Done/Undone"
-            data-bind="click: $root.toggleDone, value: $root.toggleDoneText($data)" />
+﻿<div class="form-inline" data-bind="with: todo">
+    <div class="btn-group" style="float: left; width: 100px; text-align: right">
+        <a class="btn btn-mini" data-bind="click: $root.delete">Delete</a>
+        <a class="btn btn-mini btn-primary" 
+            data-bind="click: $root.toggleDone, text: $root.toggleDoneText($data)">
+            Done/Undone
+        </a>
     </div>
-</form>
+    <a class="btn btn-link" data-bind="text: title"
+        style="float: left; position: relative; top: -4px">title</a>
+    <div class="clearfix"></div>
+</div>
 
